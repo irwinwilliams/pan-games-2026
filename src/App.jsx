@@ -50,7 +50,7 @@ function App() {
         <>
           <GameMix
             onLaunchFestival={() => setView("festival")}
-            onLaunchPanMan={() => setView("map")}
+            onLaunchPanMan={() => setView("tuning")}
           />
           <MapView
             activeBandId={activeBandId}
