@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { bands } from "./data/bands.js";
+import { FestivalOfPan } from "./components/FestivalOfPan.jsx";
+import { GameMix } from "./components/GameMix.jsx";
 import { MapView } from "./components/MapView.jsx";
 import { TuningView } from "./components/TuningView.jsx";
 
@@ -42,12 +44,20 @@ function App() {
         </div>
       </header>
 
-      {view === "map" ? (
-        <MapView
-          activeBandId={activeBandId}
-          onSelectBand={setActiveBandId}
-          onTravel={() => setView("tuning")}
-        />
+      {view === "festival" ? (
+        <FestivalOfPan onBack={() => setView("map")} />
+      ) : view === "map" ? (
+        <>
+          <GameMix
+            onLaunchFestival={() => setView("festival")}
+            onLaunchPanMan={() => setView("map")}
+          />
+          <MapView
+            activeBandId={activeBandId}
+            onSelectBand={setActiveBandId}
+            onTravel={() => setView("tuning")}
+          />
+        </>
       ) : (
         <TuningView band={activeBand} onBack={() => setView("map")} />
       )}
